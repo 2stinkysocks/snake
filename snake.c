@@ -81,7 +81,17 @@ int main(void) {
 
 	refresh();
 
-	sleep(3);
+	mvaddstr(4, 16, "3");
+	refresh();
+	sleep(1);
+	mvaddstr(4, 16, "2");
+	refresh();
+	sleep(1);
+	mvaddstr(4, 16, "1");
+	refresh();
+	sleep(1);
+	mvaddstr(4, 16, " ");
+	refresh();
 
 	// game loop
 	while(!collide(&head)) {
@@ -105,16 +115,16 @@ int main(void) {
 			getch(); // skip the [
 			switch(getch()) { // the real value
 				case 'A':
-					dir = 3;
+					if(dir == 2 || dir == 0) dir = 3;  //u
 					break;
 				case 'B':
-					dir = 1;
+					if(dir == 2 || dir == 0) dir = 1;  //d
 					break;
 				case 'C':
-					dir = 0;
+					if(dir == 1 || dir == 3) dir = 0;  //r
 					break;
 				case 'D':
-					dir = 2;
+					if(dir == 1 || dir == 3) dir = 2;  //l
 					break;
 			}
 		}
