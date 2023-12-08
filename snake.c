@@ -34,14 +34,7 @@ int main(void) {
 
 
 	setkbmode(1);
-	// char ch;
-	// while (true) {
-	// 	ch = getchar();
 
-	// 	printf("%i\n", ch);
-	// }
-
-	// return 0;
 	setlocale(LC_ALL, "");
     
 	WINDOW* mainwin;
@@ -51,6 +44,8 @@ int main(void) {
 	}
 
 	curs_set(0);
+	nodelay(mainwin, TRUE);
+	noecho();
 
 	for(int i = 0; i < boardHeight; i++) {
 		if(i == 0 || i == boardHeight-1) {
@@ -103,6 +98,24 @@ int main(void) {
 		}
 		printSnake(&head);
 		refresh();
+		// take input
+		if (getch() == '\033') { // if the first value is esc
+			getch(); // skip the [
+			switch(getch()) { // the real value
+				case 'A':
+					dir = 3;
+					break;
+				case 'B':
+					dir = 1;
+					break;
+				case 'C':
+					dir = 0;
+					break;
+				case 'D':
+					dir = 2;
+					break;
+			}
+		}
 		msleep(150);
 	}
 
