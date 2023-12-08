@@ -91,6 +91,8 @@ int main(void) {
 			mvaddstr(fruitpos->y, fruitpos->x, " ");
 			pickFruitLocation(&head, &fruitpos);
 			mvaddwstr(fruitpos->y, fruitpos->x, foodChar);
+			length++;
+			mvaddstr(boardHeight, 26, itoa(length, lengthStr));
 		} else { // if did not eat, remove the end of the snake
 			position* cutPos = cutSnakeIfNoFood(&head);
 			mvaddstr(cutPos->y, cutPos->x, " ");
@@ -128,6 +130,7 @@ int main(void) {
 	setkbmode(0);
 	free(lengthStr);
 	free(head);
+	curs_set(1);	
 	return EXIT_SUCCESS;
 }
 
